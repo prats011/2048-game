@@ -64,13 +64,16 @@ function addRandomBlock(){
 document.addEventListener('keydown', function(event){
     if(event.key === 'ArrowLeft'){
         keyLeft();
-
+        updateScore();
     } else if (event.key === 'ArrowRight'){
         keyRight();
+        updateScore(); 
     } else if (event.key === 'ArrowUp'){
         keyUp();
+        updateScore(); 
     } else if (event.key === 'ArrowDown'){
         keyDown();
+        updateScore(); 
     }
 });
 
@@ -86,6 +89,7 @@ function keyLeft(){
                   newValue[counter] = value + num;
                   value = 0;
                   counter++;
+                  score += value + num;
               } else {
                   if (value !== 0){
                   newValue[counter] = value;
@@ -122,6 +126,7 @@ function keyRight(){
                     newValue[counter] = value + num;
                     value = 0;
                     counter--;
+                    score += value + num;
                 }else{
                     if(value !== 0){
                         newValue[counter] = value;
@@ -157,6 +162,7 @@ function keyUp(){
                     newValue[counter] = value + num;
                     value = 0;
                     counter++;
+                    score += value + num;
                 }else{
                     if(value !== 0){
                         newValue[counter] = value;
@@ -193,6 +199,7 @@ function keyDown(){
                     newValue[counter] = value + num;
                     value = 0;
                     counter--;
+                    score += value + num;
                 }else{
                     if(value !== 0){
                         newValue[counter] = value;
@@ -215,6 +222,10 @@ function keyDown(){
     addRandomBlock();
     checkLost();
     console.log('Down arrow pressed!');
+}
+    
+function updateScore(){
+    document.querySelector('.score').innerText = score; //Updates the score on the screen
 }
 
 function emptyTiles(){
