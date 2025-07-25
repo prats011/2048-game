@@ -73,8 +73,21 @@ document.addEventListener('keydown', function(event){
     } else if (event.key === 'ArrowDown'){
         keyDown();
         updateScore(); 
+    }else if (event.key === ' '){ //This function restarts the game when the spacebar is pressed
+        for(let r = 0; r < rows; r++){ 
+            for(let c = 0; c<cols; c++){
+                board[r][c] = 0; //Resets the board to all zeros
+                let tile = document.getElementById(r + "-" + c);
+                updateTile(tile, 0); 
+            }
+        }
+        score = 0; //Resets the score to zero
+        updateScore(); 
+        gameStart(); //Starts the game again
     }
+
 });
+
 
 function keyLeft(){
     for(let r = 0; r < rows; r++){
