@@ -19,7 +19,7 @@ function setBoard(){
              [0, 0, 0, 0],
              [0, 0, 0, 0]];
 
-    for(let r = 0; r < rows; r++){
+    for(let r = 0; r < rows; r++){ //this populates the board with tiles
         for(let c = 0; c<cols; c++){
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString(); //A youtube video had helped me create this function
@@ -32,10 +32,9 @@ function setBoard(){
 
 function updateTile(tile, num){ //A youtube video had helped me create this function
     tile.innerText = "";
-    tile.classList.value = "";
-    tile.classList.add("tile");
-    
-    if(num > 0){
+    tile.classList.value = ""; //This function updates the tile with the number and the class
+    tile.classList.add("tile");//
+    if(num > 0){ //This function updates the tile with the number and the class
         tile.innerText = num;
         if(num < 4096){
             tile.classList.add("x"+ num.toString());
@@ -85,22 +84,22 @@ function keyLeft(){
         for(let c = 0; c < cols; c++) {
           let num = board[r][c];
           if(num != 0){
-              if(value === num){
+              if(value === num){ //If the value is the same as the previous value, it adds them together
                   newValue[counter] = value + num;
                   value = 0;
                   counter++;
                   score += value + num;
               } else {
-                  if (value !== 0){
+                  if (value !== 0){ //If the value is not zero, it adds it to the newValue array
                   newValue[counter] = value;
                   counter++;
                   }
-                  value = num;
+                  value = num; //If the value is not the same as the previous value, it sets the value to the current number
               }
           }
       }
       if(value !== 0){
-          newValue[counter] = value;
+          newValue[counter] = value; //If the value is not zero, it adds it to the newValue array
       }
       for(let c = 0; c < cols; c++){
           board[r][c] = newValue[c];
@@ -109,17 +108,17 @@ function keyLeft(){
       }
     }
     addRandomBlock();
-    checkLost()
+    checkLost() //This function checks to see if there are any valid moves left to play
     console.log('Left arrow pressed')
     
 }
 
 function keyRight(){
-    for (let r = 0; r < rows; r++){
+    for (let r = 0; r < rows; r++){ //
         let newValue = [0, 0, 0, 0];
         let value = 0;
         let counter = 3;
-        for(let c = 3; c >= 0; c--){
+        for(let c = 3; c >= 0; c--){ 
             let num = board[r][c];
             if(num != 0){
                 if(value === num){
@@ -232,7 +231,7 @@ function emptyTiles(){
     for(let r = 0; r< rows; r++){
         for(let c = 0; c<cols; c++){
             if(board[r][c] == 0){
-                return true;
+                return true;//Returns true if there are empty tiles on the board
             }
         }
     }
