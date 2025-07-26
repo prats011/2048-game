@@ -141,10 +141,11 @@ function keyRight() {
             let num = board[r][c];
             if (num != 0) {
                 if (value === num) {
-                    newValue[counter] = value + num;
+                    const res = value + num;
+                    newValue[counter] = res;
                     value = 0;
                     counter--;
-                    score += value + num;
+                    score += res;
                 } else {
                     if (value !== 0) {
                         newValue[counter] = value;
@@ -177,10 +178,11 @@ function keyUp() {
             let num = board[r][c];
             if (num != 0) {
                 if (value === num) {
-                    newValue[counter] = value + num;
+                    const res = value + num;
+                    newValue[counter] = res;
                     value = 0;
                     counter++;
-                    score += value + num;
+                    score += res;
                 } else {
                     if (value !== 0) {
                         newValue[counter] = value;
@@ -214,10 +216,11 @@ function keyDown() {
             let num = board[r][c];
             if (num != 0) {
                 if (value === num) {
-                    newValue[counter] = value + num;
+                    const res = value + num;
+                    newValue[counter] = res;
                     value = 0;
                     counter--;
-                    score += value + num;
+                    score += res;
                 } else {
                     if (value !== 0) {
                         newValue[counter] = value;
