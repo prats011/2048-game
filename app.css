@@ -6,26 +6,24 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 97vh;
-    margin: -10;
+    height: 100vh;
 }
 
 hr {
     width: 500px;
-    margin-top: -8px;
+    margin-top: -10px;
     margin-bottom: -10px;
     border-top: 1.2px solid #000000;
-
 }
 
-h1{
+h1 {
     font-size: 2.25rem;
     margin: 15px;
     padding: 0;
     border: 0
 }
 
-p{
+#score {
     font-size: 20px;
     margin: 10 px 0;
 }
@@ -54,7 +52,7 @@ p{
 }
 
 /* colored tiles */
-.x2{
+.x2 {
     background-color: #eee4da;
     color: #727371;
 }
