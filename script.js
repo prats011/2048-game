@@ -57,7 +57,6 @@ function addRandomBlock() {
         board[i][j] = 2;
         let tile = document.getElementById(i + "-" + j);
         updateTile(tile, 2);
-
     }
     else if (emptyTiles() == true) {
         addRandomBlock();
@@ -116,6 +115,7 @@ function keyLeft() {
                     value = num;
                 }
             }
+            
         }
         if (value !== 0) {
             newValue[counter] = value;
@@ -264,6 +264,27 @@ function emptyTiles() {
     return false;
 
 }
+
+function slide(row) {
+    row = filterZero(row);
+    for (let r = 0; r < row.length - 1; r++) {
+        if (row[r] === row[r + 1]) {
+            row[r] *= 2;
+            row[r + 1] = 0;
+            score += row[r];
+        }
+    }
+    row = filterZero(row);
+    while (row.length < cols) {
+        row.push(0);
+    }
+    return row;
+}
+
+function filterZero(row) {
+    return row.filter(num => num !== 0);
+}
+
 
 function checkLost() {
     for (let r = 0; r < rows; r++) {
