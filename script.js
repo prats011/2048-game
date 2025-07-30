@@ -109,41 +109,20 @@ function keyLeft() {
 }
 
 function keyRight() {
-    for (let r = 0; r < rows; r++) { 
-        let newValue = [0, 0, 0, 0];
-        let value = 0;
-        let counter = 3;
-        for (let c = 3; c >= 0; c--) {
-            let num = board[r][c];
-            if (num != 0) {
-                if (value === num) {
-                    const res = value + num;
-                    newValue[counter] = res;
-                    value = 0;
-                    counter--;
-                    score += res;
-                } else {
-                    if (value !== 0) {
-                        newValue[counter] = value;
-                        counter--;
-                    }
-                    value = num;
-                }
-            }
-        }
-        if (value !== 0) {
-            newValue[counter] = value;
-        }
-        for (let c = 3; c >= 0; c--) {
-            board[r][c] = newValue[c];
-            let tile = document.getElementById(r + "-" + c);
-            updateTile(tile, newValue[c]);
+    for (let r = 0; r < rows; r++) {
+        let row = board[r];
+        row.reverse();
+        let newRow = slide(row);
+        newRow.reverse();
+        board[r] = newRow;
+        for (let c = 0; c < cols; c++) {
+            updateTile(document.getElementById(r + "-" + c), newRow[c]);
         }
     }
     addRandomBlock();
     checkLost();
     updateScore();
-    console.log('Right arrow pressed!');
+    console.log("Right arrow pressed");
 }
 
 function keyUp() {
