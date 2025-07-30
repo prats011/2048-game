@@ -127,80 +127,38 @@ function keyRight() {
 
 function keyUp() {
     for (let c = 0; c < cols; c++) {
-        let newValue = [0, 0, 0, 0];
-        let value = 0;
-        let counter = 0;
+        let col = [];
         for (let r = 0; r < rows; r++) {
-            let num = board[r][c];
-            if (num != 0) {
-                if (value === num) {
-                    const res = value + num;
-                    newValue[counter] = res;
-                    value = 0;
-                    counter++;
-                    score += res;
-                } else {
-                    if (value !== 0) {
-                        newValue[counter] = value;
-                        counter++;
-                    }
-                    value = num;
-                }
-            }
-
+            col.push(board[r][c]);
         }
-        if (value !== 0) {
-            newValue[counter] = value;
-        }
+        let newCol = slide(col);
         for (let r = 0; r < rows; r++) {
-            board[r][c] = newValue[r];
-            let tile = document.getElementById(r + "-" + c);
-            updateTile(tile, newValue[r]);
+            board[r][c] = newCol[r];
+            updateTile(document.getElementById(r + "-" + c), newCol[r]);
         }
     }
     addRandomBlock();
     checkLost();
     updateScore();
-    console.log('Up arrow pressed!');
+    console.log("Up arrow pressed");
 }
 
 function keyDown() {
     for (let c = 0; c < cols; c++) {
-        let newValue = [0, 0, 0, 0];
-        let value = 0;
-        let counter = 3;
-        for (let r = 3; r >= 0; r--) {
-            let num = board[r][c];
-            if (num != 0) {
-                if (value === num) {
-                    const res = value + num;
-                    newValue[counter] = res;
-                    value = 0;
-                    counter--;
-                    score += res;
-                } else {
-                    if (value !== 0) {
-                        newValue[counter] = value;
-                        counter--;
-                    }
-                    value = num;
-                }
-            }
-
+        let col = [];
+        for (let r = rows - 1; r >= 0; r--) {
+            col.push(board[r][c]);
         }
-        if (value !== 0) {
-            newValue[counter] = value;
-        }
-        for (let r = 3; r >= 0; r--) {
-            board[r][c] = newValue[r];
-            let tile = document.getElementById(r + "-" + c);
-            updateTile(tile, newValue[r]);
+        let newCol = slide(col);
+        for (let r = rows - 1; r >= 0; r--) {
+            board[r][c] = newCol[rows - 1 - r];
+            updateTile(document.getElementById(r + "-" + c), board[r][c]);
         }
     }
     addRandomBlock();
     checkLost();
     updateScore();
-    console.log('Down arrow pressed!');
+    console.log("Down arrow pressed");
 }
 
 function updateScore() {
