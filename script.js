@@ -95,42 +95,17 @@ document.addEventListener('keydown', function (event) {
 
 function keyLeft() {
     for (let r = 0; r < rows; r++) {
-        let newValue = [0, 0, 0, 0];
-        let value = 0;
-        let counter = 0;
+        let row = board[r];
+        let newRow = slide(row);
+        board[r] = newRow;
         for (let c = 0; c < cols; c++) {
-            let num = board[r][c];
-            if (num != 0) {
-                if (value === num) {
-                    const res = value + num
-                    newValue[counter] = res;
-                    counter++;
-                    value = 0
-                    score += res;
-                } else {
-                    if (value !== 0) {
-                        newValue[counter] = value;
-                        counter++;
-                    }
-                    value = num;
-                }
-            }
-            
-        }
-        if (value !== 0) {
-            newValue[counter] = value;
-        }
-        for (let c = 0; c < cols; c++) {
-            board[r][c] = newValue[c];
-            let tile = document.getElementById(r + "-" + c);
-            updateTile(tile, newValue[c]);
+            updateTile(document.getElementById(r + "-" + c), newRow[c]);
         }
     }
     addRandomBlock();
     checkLost();
     updateScore();
-    console.log('Left arrow pressed');
-
+    console.log("Left arrow pressed");
 }
 
 function keyRight() {
