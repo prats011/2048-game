@@ -51,7 +51,7 @@ function updateTile(tile, num) {
 
 function addRandomBlock() {
     let i = Math.floor(Math.random() * 4);
-    let j = Math.floor(Math.random() * 4);//Random tile generator 
+    let j = Math.floor(Math.random() * 4);
 
     if (board[i][j] == 0) {
         board[i][j] = 2;
@@ -68,16 +68,16 @@ function addRandomBlock() {
 document.addEventListener('keydown', function (event) {
     if (event.key === 'ArrowLeft') {
         keyLeft();
-        updateScore();
+        
     } else if (event.key === 'ArrowRight') {
         keyRight();
-        updateScore();
+        
     } else if (event.key === 'ArrowUp') {
         keyUp();
-        updateScore();
+        
     } else if (event.key === 'ArrowDown') {
         keyDown();
-        updateScore();
+        
     } else if (event.key === 'Space') {
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
@@ -109,16 +109,16 @@ function keyLeft() {
                     value = 0
                     score += res;
                 } else {
-                    if (value !== 0) { //If the value is not zero, it adds it to the newValue array
+                    if (value !== 0) {
                         newValue[counter] = value;
                         counter++;
                     }
-                    value = num; //If the value is not the same as the previous value, it sets the value to the current number
+                    value = num;
                 }
             }
         }
         if (value !== 0) {
-            newValue[counter] = value; //If the value is not zero, it adds it to the newValue array
+            newValue[counter] = value;
         }
         for (let c = 0; c < cols; c++) {
             board[r][c] = newValue[c];
@@ -127,13 +127,14 @@ function keyLeft() {
         }
     }
     addRandomBlock();
-    checkLost() //This function checks to see if there are any valid moves left to play
-    console.log('Left arrow pressed')
+    checkLost();
+    updateScore();
+    console.log('Left arrow pressed');
 
 }
 
 function keyRight() {
-    for (let r = 0; r < rows; r++) { //
+    for (let r = 0; r < rows; r++) { 
         let newValue = [0, 0, 0, 0];
         let value = 0;
         let counter = 3;
@@ -165,7 +166,8 @@ function keyRight() {
         }
     }
     addRandomBlock();
-    checkLost()
+    checkLost();
+    updateScore();
     console.log('Right arrow pressed!');
 }
 
@@ -203,7 +205,8 @@ function keyUp() {
         }
     }
     addRandomBlock();
-    checkLost()
+    checkLost();
+    updateScore();
     console.log('Up arrow pressed!');
 }
 
@@ -242,18 +245,19 @@ function keyDown() {
     }
     addRandomBlock();
     checkLost();
+    updateScore();
     console.log('Down arrow pressed!');
 }
 
 function updateScore() {
-    document.querySelector('.score').innerText = score; //Updates the score on the screen
+    document.querySelector('.score').innerText = score;
 }
 
 function emptyTiles() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             if (board[r][c] == 0) {
-                return true;//Returns true if there are empty tiles on the board
+                return true;
             }
         }
     }
@@ -265,13 +269,15 @@ function checkLost() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             if (r < 3 && board[r][c] == board[r + 1][c] || board[r][c] == 0) {
-                return; //This function checks to see if there are any valid moves left to play
+                return;
             }
             if (c < 3 && board[r][c] == board[r][c + 1] || board[r][c] == 0) {
                 return;
             }
         }
     }
-    alert("Game Over! No more moves possible."); //Alerts the players that there are no moves left
+    alert("Game Over! No more moves possible.");
 
 }
+
+
