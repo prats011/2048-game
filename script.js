@@ -67,17 +67,17 @@ function addRandomBlock() {
 document.addEventListener('keydown', function (event) {
     if (event.key === 'ArrowLeft') {
         keyLeft();
-        
+
     } else if (event.key === 'ArrowRight') {
         keyRight();
-        
+
     } else if (event.key === 'ArrowUp') {
         keyUp();
-        
+
     } else if (event.key === 'ArrowDown') {
         keyDown();
-        
-    } else if (event.key === 'Space') {
+
+    } else if (event.key === ' ') {
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
                 board[r][c] = 0;
@@ -87,7 +87,8 @@ document.addEventListener('keydown', function (event) {
         }
         score = 0;
         updateScore();
-        gameStart();
+        addRandomBlock();
+        addRandomBlock();
     }
 
 });
